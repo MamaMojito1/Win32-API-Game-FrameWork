@@ -222,7 +222,9 @@ namespace Application
 			SRCCOPY
 		) == 0)
 		{
+#ifdef _DEBUG
 			OutputDebugString("StretchDIBits function failed!\n");
+#endif
 		}
 	}
 	void Renderer::clear()
