@@ -4,9 +4,11 @@ App
 	float x = 250, y = 250;
 	Application::Game::setGameUpdate([&](float delta)
 	{
+#ifdef _DEBUG
 		char char_buffer[256];
-		//snprintf(char_buffer, 256, "delta: %f\n", delta);
-		//OutputDebugString(char_buffer);
+		snprintf(char_buffer, 256, "delta: %f\n", delta);
+		OutputDebugString(char_buffer);
+#endif
 
 		static int fps;
 		static float timePassed = 0.0;
@@ -16,8 +18,10 @@ App
 
 		if (timePassed >= 1.0f)
 		{
-			//snprintf(char_buffer, 256, "FPS: %d\n", fps);
-			//OutputDebugString(char_buffer);
+#ifdef _DEBUG
+			snprintf(char_buffer, 256, "FPS: %d\n", fps);
+			OutputDebugString(char_buffer);
+#endif
 
 			timePassed -= 1.0f;
 			fps = 0;
@@ -45,9 +49,12 @@ App
 		else if (Application::Input::IsKeyPressed(DC_D))
 			x += 200 * delta;
 
+#ifdef _DEBUG
 		Application::Input::Position MousePosition = Application::Input::GetMousePosition();
 		snprintf(char_buffer, 256, "%d, %d\n", MousePosition.x, MousePosition.y);
 		OutputDebugString(char_buffer);
+#endif
+
 	}
 	);
 

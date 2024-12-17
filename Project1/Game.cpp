@@ -28,13 +28,17 @@ namespace Application
 		case WM_CLOSE:
 		{
 			Game::getInstance().running = false;
+#ifdef _DEBUG
 			OutputDebugString("Window close\n");
+#endif
 		} break;
 
 		case WM_DESTROY:
 		{
 			Game::getInstance().running = false;
+#ifdef _DEBUG
 			OutputDebugString("Window destroy\n");
+#endif
 		} break;
 
 		case WM_SYSKEYDOWN:
@@ -69,7 +73,9 @@ namespace Application
 
 		case WM_PAINT:
 		{
+#ifdef _DEBUG
 			OutputDebugString("Window Paint\n");
+#endif
 
 			PAINTSTRUCT paint;
 			HDC device_context = BeginPaint(hWnd, &paint);
@@ -107,7 +113,9 @@ namespace Application
 
 		if (!RegisterClass(&windowClass))
 		{
+#ifdef _DEBUG
 			OutputDebugString("Failed to register window class\n");
+#endif
 			return;
 		}
 
@@ -125,7 +133,9 @@ namespace Application
 
 		if (windowHandle)
 		{
+#ifdef _DEBUG
 			OutputDebugString("Game INIT\n");
+#endif
 			running = true;
 
 			Renderer::SetWindowHandle(windowHandle);
@@ -173,7 +183,9 @@ namespace Application
 		}
 		else
 		{
+#ifdef _DEBUG
 			OutputDebugString("Failed to create a window\n");
+#endif
 		}
 	}
 
